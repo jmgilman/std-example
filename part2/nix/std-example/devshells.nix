@@ -13,11 +13,11 @@ let
   inherit (inputs) nixpkgs std;
   l = nixpkgs.lib // builtins;
 in
-# Here we map an attribute set to the `std.mkShell` function. This is a small
-  # wrapper around the numtide/devshell `mkShell` function and provides
-  # integration with `nixago`, which we'll see in a later part. The result of
-  # this map is a attribute set where the value is a proper development shell
-  # derivation.
+# Here we map an attribute set to the `std.std.lib.mkShell` function.
+  # This is a small wrapper around the numtide/devshell `mkShell` function and
+  # provides integration with `nixago`, which we'll see in a later part. The
+  # result of this map is a attribute set where the value is a proper
+  # development shell derivation.
 l.mapAttrs (_: std.std.lib.mkShell) {
   # This is our only development shell, so we name it "default". The
   # numtide/devshell `mkShell` function uses modules, so the `{ ... }` here is
