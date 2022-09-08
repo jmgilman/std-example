@@ -6,6 +6,11 @@
 # Ultimately, this means it produces a nix derivation that, when evalulated,
 # produces our binary.
 
+# The function arguments shown here are universal to all cell blocks. We are
+# provided with the inputs from our flake and a `cell` attribute which refers
+# to the parent cell this block falls under. Note that the inputs are
+# "desystematized" and are not in the same format as the `inputs` attribute in
+# the flake. This is a key benefit afforded by `std`.
 { inputs
 , cell
 }:

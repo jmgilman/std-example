@@ -8,11 +8,19 @@
   # As per the flake schema, we define an attribute for holding the outputs of
   # our flake. In this case, `std` will be responsible for managing the outputs.
   outputs = { std, ... } @ inputs:
-    # The grow function can be seen as the main entrypoint into `std`. It is
+    # The `growOn` function can be seen as the main entrypoint into `std`. It is
     # responsible for growing our "organism" through cells into the final
     # product. It will produce an output schema that is specific to `std` and
     # can be further explored through the `std` CLI/TUI.
-    std.grow
+    #
+    # The `growOn` function is similar to `grow` but allows us to expand our
+    # flake outputs to include more than just what `std` generates by default.
+    # It takes a variable number of attribute sets after the first one which
+    # defines how it behaves and will recursively update them into one final
+    # set. Without this, we would only be able to use the `std` CLI/TUI, as by
+    # default `std` places outputs under the `__std` attribute which the nix CLI
+    # knows nothing about.
+    std.growOn
       {
         # Necessary for `std` to perform its magic.
         inherit inputs;
@@ -42,5 +50,17 @@
         cellBlocks = [
           (std.blockTypes.runnables "apps")
         ];
+      }
+      # This second argument, as described above, allows us to expand what gets
+      # included in our flake output. In this case, we're using the built-in
+      # `harvest` function to "harvest" the derivations from our apps cell
+      # block into the `packages` attribute of our flake output. This allows us
+      # to interact with our flake using the nix CLI. For example, we can run
+      #
+      # > nix run .#default
+      #
+      # Which will build and run our binary.
+      {
+        packages = std.harvest inputs.self [ [ "std-example" "apps" ] ];
       };
 }
