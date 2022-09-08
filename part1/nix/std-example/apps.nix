@@ -29,9 +29,9 @@ in
     pname = "std-example";
     version = "0.1.0";
 
-    src = inputs.self;
+    src = inputs.self + "/part1";
     cargoLock = {
-      lockFile = inputs.self + "/Cargo.lock";
+      lockFile = inputs.self + "/part1/Cargo.lock";
     };
 
     meta = {
