@@ -13,3 +13,8 @@ fn main() {
 fn say_hello(name: &str) -> String {
     return format!("Hello, {}!", name);
 }
+
+#[test]
+fn test_say_hello() {
+    assert_eq!(say_hello("world"), "Hello, world!");
+}
