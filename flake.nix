@@ -40,7 +40,7 @@
         # which is defined as a derivation in ./nix/std-example/apps.nix that
         # builds our binary.
         cellBlocks = [
-          (std.clades.runnables "apps")
+          (std.blockTypes.runnables "apps")
         ];
       };
 }
