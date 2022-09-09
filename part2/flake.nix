@@ -62,13 +62,13 @@
           # The `devshell` type will allow us to have "development shells"
           # available. These are managed by `numtide/devshell`.
           # See: https://github.com/numtide/devshell
-          (std.clades.devshells "devshells")
+          (std.blockTypes.devshells "devshells")
 
           # The `function` type is a generic block type that allows us to define
           # some common Nix code that can be used in other cells. In this case,
           # we're defining a toolchain cell block that will contain derivations
           # for the Rust toolchain.
-          (std.clades.functions "toolchain")
+          (std.blockTypes.functions "toolchain")
         ];
       }
       # This second argument, as described above, allows us to expand what gets
