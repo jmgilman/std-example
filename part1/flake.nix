@@ -61,6 +61,6 @@
       #
       # Which will build and run our binary.
       {
-        packages = std.harvest inputs.self [ [ "std-example" "apps" ] ];
+        packages = std.harvest inputs.self [ "std-example" "apps" ];
       };
 }
