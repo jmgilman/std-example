@@ -60,6 +60,8 @@ l.mapAttrs (_: std.std.lib.mkShell) {
       {
         name = "tests";
         command = "cargo test";
+        help = "run the unit tests";
+        category = "Testing";
       }
     ];
   };
