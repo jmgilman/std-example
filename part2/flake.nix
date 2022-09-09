@@ -82,7 +82,7 @@
         # > nix run .#default
         #
         # Which will build and run our binary.
-        packages = std.harvest inputs.self [ [ "std-example" "apps" ] ];
+        packages = std.harvest inputs.self [ "std-example" "apps" ];
 
         # Likewise, we want to export our development shells so that the
         # following works as expected:
